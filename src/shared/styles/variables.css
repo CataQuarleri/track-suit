@@ -1,23 +1,23 @@
 :root {
-  /* Color Palette */
-  --color-primary-500: #0ea5e9;
-  --color-primary-600: #0284c7;
-  --color-primary-700: #0369a1;
+  /* Color Palette (Spring Theme) */
+  --color-primary-500: #f84dca;
+  --color-primary-600: #d63db0;
+  --color-primary-700: #b53094;
   
-  --color-bg-base: #f8fafc;
+  --color-bg-base: #ffffff;
   --color-bg-surface: #ffffff;
   --color-bg-elevated: #ffffff;
 
-  --color-text-primary: #0f172a;
-  --color-text-secondary: #475569;
-  --color-text-tertiary: #94a3b8;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #796f07;
+  --color-text-tertiary: #a1a1aa;
 
   --color-border: #e2e8f0;
-  --color-border-focus: #bae6fd;
+  --color-border-focus: #6477f6;
 
   --color-danger-500: #ef4444;
-  --color-success-500: #22c55e;
-  --color-warning-500: #f59e0b;
+  --color-success-500: #50f57c;
+  --color-warning-500: #fef160;
 
   /* Typography */
   --font-family-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -66,15 +66,15 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg-base: #0f172a;
-    --color-bg-surface: #1e293b;
-    --color-bg-elevated: #334155;
+    --color-bg-base: #18181b; 
+    --color-bg-surface: #27272a;
+    --color-bg-elevated: #3f3f46;
 
-    --color-text-primary: #f8fafc;
-    --color-text-secondary: #cbd5e1;
-    --color-text-tertiary: #64748b;
+    --color-text-primary: #fdf2f8; 
+    --color-text-secondary: #f84dca; /* Vibrant pink */
+    --color-text-tertiary: #a1a1aa;
 
-    --color-border: #334155;
-    --color-border-focus: #38bdf8;
+    --color-border: #3f3f46;
+    --color-border-focus: #6477f6; /* Vibrant blue */
   }
 }
