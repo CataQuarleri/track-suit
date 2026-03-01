@@ -1,0 +1,57 @@
+.ts-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.ts-input-wrapper--full-width {
+  width: 100%;
+}
+
+.ts-input-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.ts-input {
+  width: 100%;
+  padding: var(--spacing-2) var(--spacing-3);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.ts-input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.ts-input:disabled {
+  background-color: var(--color-bg-base);
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.ts-input:focus {
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 3px var(--color-border-focus);
+}
+
+.ts-input--error {
+  border-color: var(--color-danger-500);
+}
+
+.ts-input--error:focus {
+  border-color: var(--color-danger-500);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2); /* var(--color-danger-500) with opacity */
+}
+
+.ts-input-error-msg {
+  font-size: var(--font-size-xs);
+  color: var(--color-danger-500);
+}

@@ -1,0 +1,23 @@
+.ts-card {
+  background-color: var(--color-bg-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.ts-card--p-none {
+  padding: 0;
+}
+
+.ts-card--p-sm {
+  padding: var(--spacing-3);
+}
+
+.ts-card--p-md {
+  padding: var(--spacing-5);
+}
+
+.ts-card--p-lg {
+  padding: var(--spacing-8);
+}
