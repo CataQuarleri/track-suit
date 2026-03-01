@@ -1,0 +1,55 @@
+ Phase 1: Foundation & Project Scaffolding
+   - Goal: Set up the FSD-compliant environment and design system.
+   - Rationale: Establishing the FSD directory structure and global CSS variables early prevents technical debt and ensures consistency in the
+     mobile-first UI.
+   - Key Deliverables: Vite/React/TS setup, src/shared (styles/ui), and Supabase client configuration.
+
+
+  Phase 2: Multi-Tenancy & Identity (The Family Model)
+   - Goal: Implement secure user isolation and authentication.
+   - Rationale: Multi-tenancy is the "top-level grouping entity." We must ensure family_id is present in every relevant table and enforced via RLS.
+   - Key Deliverables: families and members tables, Supabase Auth integration, and a useFamily context hook.
+
+
+  Phase 3: The Ledger (Event Sourcing Core)
+   - Goal: Create the immutable record-keeping system.
+   - Rationale: Per the "Event Sourcing-Lite" mandate, we need a single transactions table where state is calculated via SQL Views rather than UPDATE
+     statements.
+   - Key Deliverables: transactions table, PostgreSQL Views for balance calculation, and the Transaction Logging UI.
+
+
+  Phase 4: Budgets & Fluid Pacing Engine
+   - Goal: Implement the "Behavioral Blueprint" and pacing calculations.
+   - Rationale: This is the project's unique value proposition. The calculation (Remaining Total Budget / Remaining Periods) must be implemented as a
+     core domain utility.
+   - Key Deliverables: budgets table (JSON config), Pacing utility functions, and the "Pacing Engine" UI components.
+
+
+  Phase 5: Settlement & Reconciliation Engine
+   - Goal: Build the credit card settlement workflow.
+   - Rationale: This specialized workflow requires "locking" transactions. It's a complex state management task that relies on the immutable ledger from
+     Phase 3.
+   - Key Deliverables: settlements table, "Reconciliation Mode" UI, and the transaction bundling logic.
+
+
+  Phase 6: PWA, Discovery & Polishing
+   - Goal: Finalize the mobile-first experience and offline capabilities.
+   - Rationale: Adding the service worker and refining the "General Activity Stream" ensures the app feels like a high-quality native tool.
+   - Key Deliverables: Manifest/Service worker setup, advanced filtering UI, and performance optimization.
+
+  ---
+
+  Plan
+
+
+   1. Initialize Project: Scaffold a Vite + React + TypeScript project with the strict FSD folder structure (app, processes, pages, features, entities,
+      shared).
+   2. Define CSS Tokens: Create src/shared/styles/variables.css containing the color palette, spacing scale, and typography tokens for the mobile-first
+      design.
+   3. Supabase Schema Drafting: Write the initial SQL migration for the families, members, and transactions tables, including RLS policies for
+      multi-tenancy.
+   4. Transaction Logic: Implement the "Read Model" PostgreSQL views to dynamically aggregate balances from the immutable transaction ledger.
+   5. Pacing Utility: Develop the TypeScript logic for the fluid budget pacing formula in src/entities/budget.
+   6. Component Scaffolding: Create shared UI primitives (Button, Input, Card) using modern Vanilla CSS.
+   7. Present for approval.
+
