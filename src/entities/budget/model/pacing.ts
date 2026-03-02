@@ -1,4 +1,4 @@
-import { BudgetBlueprint, PacingState } from './types';
+import type { BudgetBlueprint, PacingState } from './types';
 
 /**
  * Calculates the fluid pacing target for a budget.
