@@ -1,46 +1,62 @@
-import { Button, Input, Card } from './shared/ui';
-import './App.css';
+import { useFamily } from '@/app/providers/FamilyProvider'
+import { Button } from '@/shared/ui'
+import { LogTransactionForm } from '@/features/transactions/log-transaction/ui/LogTransactionForm'
+import { RecentActivityList } from '@/features/transactions/recent-activity/ui/RecentActivityList'
+import './App.css'
 
 function App() {
+  const { user, family, member, loading } = useFamily();
+
+  if (loading) {
+    return (
+      <div className="app-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <p>Loading TrackSuit...</p>
+      </div>
+    );
+  }
+
   return (
-    <div style={{ padding: 'var(--spacing-6)', maxWidth: '600px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 'var(--spacing-8)' }}>
-      <header>
-        <h1 style={{ fontSize: 'var(--font-size-3xl)', marginBottom: 'var(--spacing-2)' }}>TrackSuit</h1>
-        <p style={{ color: 'var(--color-text-secondary)' }}>Component Scaffolding Demo</p>
-      </header>
-
-      <section>
-        <h2 style={{ fontSize: 'var(--font-size-xl)', marginBottom: 'var(--spacing-4)' }}>Buttons</h2>
-        <div style={{ display: 'flex', gap: 'var(--spacing-4)', flexWrap: 'wrap', alignItems: 'center' }}>
-          <Button variant="primary">Primary</Button>
-          <Button variant="secondary">Secondary</Button>
-          <Button variant="danger">Danger</Button>
-          <Button variant="ghost">Ghost</Button>
-          <Button size="sm">Small</Button>
-          <Button size="lg">Large</Button>
+    <div className="app-container" style={{ padding: 'var(--spacing-6)', maxWidth: '600px', margin: '0 auto' }}>
+      {!user ? (
+        <div className="auth-section">
+          <header style={{ textAlign: 'center', marginBottom: 'var(--spacing-8)' }}>
+            <h1 style={{ fontSize: 'var(--font-size-3xl)', color: 'var(--color-primary-main)' }}>TrackSuit</h1>
+            <p style={{ color: 'var(--color-text-secondary)' }}>Event Sourcing Core Active</p>
+          </header>
+          <div style={{ textAlign: 'center' }}>
+            <p style={{ marginBottom: 'var(--spacing-4)' }}>Phase 3: Ledger Foundation</p>
+            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-tertiary)' }}>
+              Login to access the immutable transaction ledger.
+            </p>
+          </div>
         </div>
-      </section>
+      ) : (
+        <div className="dashboard-section">
+          <header style={{ marginBottom: 'var(--spacing-8)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <div>
+              <h1 style={{ fontSize: 'var(--font-size-2xl)' }}>Hi, {member?.name || user.email}!</h1>
+              {family && (
+                <p style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--font-size-sm)' }}>
+                  Family: <strong>{family.name}</strong>
+                </p>
+              )}
+            </div>
+            <Button variant="ghost" size="sm" onClick={() => window.location.reload()}>Sync</Button>
+          </header>
 
-      <section>
-        <h2 style={{ fontSize: 'var(--font-size-xl)', marginBottom: 'var(--spacing-4)' }}>Inputs</h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-4)' }}>
-          <Input label="Email Address" placeholder="Enter your email" type="email" />
-          <Input label="Password" placeholder="Enter your password" type="password" error="Password must be at least 8 characters" />
+          <main style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-8)' }}>
+            <section>
+              <LogTransactionForm />
+            </section>
+            
+            <section>
+              <RecentActivityList />
+            </section>
+          </main>
         </div>
-      </section>
-
-      <section>
-        <h2 style={{ fontSize: 'var(--font-size-xl)', marginBottom: 'var(--spacing-4)' }}>Cards</h2>
-        <Card padding="lg">
-          <h3 style={{ fontSize: 'var(--font-size-lg)', marginBottom: 'var(--spacing-2)' }}>Reconciliation Ready</h3>
-          <p style={{ color: 'var(--color-text-secondary)', marginBottom: 'var(--spacing-4)' }}>
-            You have 3 un-reconciled transactions waiting to be bundled.
-          </p>
-          <Button fullWidth>Start Reconciliation</Button>
-        </Card>
-      </section>
+      )}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
